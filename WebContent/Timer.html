@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var timer;
+    
+    $('#start').click(function() {
+      var hour = $('#hour').val();
+      var minute = $('#minute').val();
+      var second = $('#second').val();
+      var invalid = false;
+      if (hour < 0 || hour > 24) {
+        invalid = true;
+        $('#hour').val('');
+      } 
+      if (minute < 0  || minute > 60 ) {
+        invalid = true;
+        $('#minute').val('');
+      }
+      if (second < 0  || second > 60 ) {
+        invalid = true;
+        $('#second').val('');
+      }
+      if(invalid == false){
+        var time = hour * 3600 + minute * 60 + second;
+        timer = setTimeout(function() {
+          alert('Time over');
+        }, time*1000);
+      }
+    });
+    
+    $('#stop').click(function() {
+      clearTimeout(timer);
+      alert('Stopped');
+    });
+    
+    $('#reset').click(function() {
+      $('#hour').val(''); 
+      $('#minute').val('');
+      $('#second').val('');
+    });
+  });
+</script>
+</head>
+<body>
+  <input name="hour" id="hour" placeholder="hour" />
+  <input name="minutes" id="minute" placeholder="minute" />
+  <input name="second" id="second" placeholder="second" />
+
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
+  <button id="reset">Reset</button>
+</body>
+</html>
